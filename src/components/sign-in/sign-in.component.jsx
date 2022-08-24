@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { signInWithGooglePopup, SignInAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils';
 import FormInput from '../form-input/form-input.component';
-import './sign-in.component.scss'
 import Button from '../button/button.component';
+import './sign-in.component.scss'
 const defaultFormField = {
     email: '',
     password: '',
@@ -24,7 +24,6 @@ const SignIn = () => {
         event.preventDefault();
         try {
             const response = await SignInAuthUserWithEmailAndPassword(email, password);
-            console.log(response)
             resetFormField();
         } catch (error) {
             if (error.code === "auth/wrong-password" || "auth/user-not-found") {
@@ -36,8 +35,8 @@ const SignIn = () => {
     };
 
     const logGoogleUser = async () => {
-        const { user } = await signInWithGooglePopup();
-        await createUserDocumentFromAuth(user);
+        await signInWithGooglePopup();
+
     }
     return (
         <div className='sign-in-container'>
