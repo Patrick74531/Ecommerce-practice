@@ -1,15 +1,18 @@
 .nav-bar {
     display: flex;
     justify-content: space-between;
-    margin: 0 100px;
+    margin: 0 20px;
     align-items: center;
     height: 70px;
 
     .nav-links-containers {
         display: flex;
+        align-items: center;
+        justify-content: flex-end;
 
         .nav-link {
-            margin-left: 30px;
+            padding: 10px 15px;
+            cursor: pointer;
         }
     }
 }
