@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './category-item.styles.scss';
 
 const CategoryItem = ({ category, judgeLength }) => {
     const [categoryContainer, setCategoryContainer] = useState('')
+    const navigate = useNavigate();
+    const onNavigateHandler = () => navigate(category.route);
     useEffect(() => {
 
         if (judgeLength % 3 === 0) {
@@ -16,7 +19,7 @@ const CategoryItem = ({ category, judgeLength }) => {
 
 
     return (
-        <div key={category.id} className={categoryContainer}>
+        <div key={category.id} className={categoryContainer} onClick={onNavigateHandler}>
             <div
                 className='background-image'
                 style={{ backgroundImage: `url(${category.imageUrl})` }}

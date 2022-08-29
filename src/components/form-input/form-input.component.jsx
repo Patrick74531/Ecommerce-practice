@@ -1,5 +1,5 @@
 import React from 'react'
-import './form-input.component.scss'
+import './form-input.styles.scss'
 const FormInput = ({ label, ...otherProps }) => {
     return (
         <div className='group'>

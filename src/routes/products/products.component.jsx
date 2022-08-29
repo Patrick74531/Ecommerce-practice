@@ -2,13 +2,15 @@ import React, { useEffect, useContext, useState, Fragment } from 'react';
 import { useParams } from 'react-router-dom';
 import { ProductContext } from '../../contexts/products.context';
 import ProductCard from '../../components/product-card/product-card.component';
-import './products.component.scss'
+import './products.styles.scss'
 const Products = () => {
     const { product } = useParams();
+    console.log(product);
     const [productShown, setProductShown] = useState();
     const { products } = useContext(ProductContext);
     useEffect(() => {
-        setProductShown(products[product]);
+        if (products && products)
+            setProductShown(products[product]);
     }, [product, products]);
     console.log(productShown);
     return (

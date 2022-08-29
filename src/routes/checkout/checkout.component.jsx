@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import CheckoutItem from '../../components/checkout-item/checkout-item.componnet'
 import { CartContext } from '../../contexts/cart.context'
-import './checkout.component.scss'
+import './checkout.styles.scss'
 const Checkout = () => {
     const { cartItems, totalPrice } = useContext(CartContext)
     console.log(cartItems);

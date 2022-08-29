@@ -1,8 +1,10 @@
 import React from 'react';
-import './directory.styles.scss';
 import CategoryItem from '../categoy-item/category-item.component';
+import { useNavigate } from 'react-router-dom';
+import './directory.styles.scss';
 const Directory = ({ categories }) => {
-
+    const navigate = useNavigate();
+    const onNavigateHandler = () => navigate(categories.route);
     return (
         <div className='directory-container'>
             {categories.map(category => (
@@ -10,6 +12,7 @@ const Directory = ({ categories }) => {
                     key={category.id}
                     category={category}
                     judgeLength={categories.length}
+                    NavigateHandler={onNavigateHandler}
                 />
             ))}
         </div>

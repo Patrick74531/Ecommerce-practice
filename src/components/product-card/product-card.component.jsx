@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import Button from '../button/button.component'
 import { CartContext } from '../../contexts/cart.context'
-import './product-card.component.scss'
+import './product-card.styles.scss'
 
 const ProductCard = ({ product }) => {
     const { name, price, imageUrl } = product
