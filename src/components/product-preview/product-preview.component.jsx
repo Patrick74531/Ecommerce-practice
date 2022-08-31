@@ -1,10 +1,14 @@
-import React, { useContext } from 'react'
+import React from 'react'
+import { useSelector } from 'react-redux/es/hooks/useSelector'
 import { Link } from 'react-router-dom'
+import { selectCurrentProduct } from '../../store/products/product.selector'
 import ProductCard from '../product-card/product-card.component'
-import { ProductContext } from '../../contexts/products.context'
+// import { ProductContext } from '../../contexts/products.context'
+
 import './product-preview.styles.scss'
 const ProductPreview = () => {
-    const { products } = useContext(ProductContext)
+    const products = useSelector(selectCurrentProduct);
+    // const { products } = useContext(ProductContext)
     return (
         <div className='category-preview-container'>
             {
