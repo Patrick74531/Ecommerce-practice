@@ -4,7 +4,7 @@ const selectProductReducer = (state) => state.products;
 
 export const selectProducts = createSelector(
     [selectProductReducer],
-    (state) => state.products
+    (products) => products.products
 );
 
 export const selectCurrentProduct = createSelector(
@@ -14,3 +14,8 @@ export const selectCurrentProduct = createSelector(
         acc[title.toLowerCase()] = items;
         return acc
     }, {}));
+
+export const selectProductsIsLoading = createSelector(
+    [selectProductReducer],
+    products => products.isLoading
+)

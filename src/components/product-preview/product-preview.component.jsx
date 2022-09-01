@@ -1,18 +1,20 @@
 import React from 'react'
 import { useSelector } from 'react-redux/es/hooks/useSelector'
 import { Link } from 'react-router-dom'
-import { selectCurrentProduct } from '../../store/products/product.selector'
+import { selectCurrentProduct, selectProductsIsLoading } from '../../store/products/product.selector'
 import ProductCard from '../product-card/product-card.component'
+import Spinner from '../spinner/spinner.component'
 // import { ProductContext } from '../../contexts/products.context'
 
 import './product-preview.styles.scss'
 const ProductPreview = () => {
     const products = useSelector(selectCurrentProduct);
+    const isLoading = useSelector(selectProductsIsLoading);
     // const { products } = useContext(ProductContext)
     return (
         <div className='category-preview-container'>
-            {
-                products && Object.keys(products).map((title) => (
+            {isLoading ? <Spinner /> :
+                (products && Object.keys(products).map((title) => (
                     <div key={title}>
 
                         <h2>
@@ -29,7 +31,7 @@ const ProductPreview = () => {
                                     )
                             }
                         </div>
-                    </div>))
+                    </div>)))
             }
 
         </div>

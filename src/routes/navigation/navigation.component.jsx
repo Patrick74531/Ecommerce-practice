@@ -6,13 +6,16 @@ import { selectCurrentUser } from '../../store/user/user.selector';
 import { SignOutUser } from '../../utils/firebase/firebase.utils';
 import CartIcon from '../../components/cart-icon/cart-icon.component';
 import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
-import { CartContext } from '../../contexts/cart.context';
+import { selectCartOpen } from '../../store/cart/cart.selector';
+
+// import { CartContext } from '../../contexts/cart.context';
 // import { UserContext } from '../../contexts/user.context';
 import './navigation.styles.scss';
 const Navigation = () => {
 
     const currentUser = useSelector(selectCurrentUser);
-    const { isCartOpen } = useContext(CartContext);
+    const isCartOpen = useSelector(selectCartOpen);
+    // const { isCartOpen } = useContext(CartContext);
     // const { currentUser } = useContext(UserContext);
 
 
