@@ -3,11 +3,11 @@ import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
 import ProductPreview from '../../components/product-preview/product-preview.component';
 import Products from '../products/products.component';
-import { fetchProductsAsync } from '../../store/products/product.action';
+import { fetchProductsStart } from '../../store/products/product.action';
 const Shop = () => {
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(fetchProductsAsync())
+        dispatch(fetchProductsStart())
     }, [])
     return (
         <Routes>

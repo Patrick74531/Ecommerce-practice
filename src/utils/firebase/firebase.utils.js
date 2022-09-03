@@ -85,7 +85,8 @@ export const createUserDocumentFromAuth = async (
             console.log('error', error.message);
         }
     }
-    return userDocRef;
+    // return userDocRef;
+    return userSnapshot;
 }
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
     if (!email || !password) return;
@@ -98,5 +99,18 @@ export const SignInAuthUserWithEmailAndPassword = async (email, password) => {
 export const SignOutUser = () => signOut(auth);
 export const onAuthStateChangedLisener = (callback) => onAuthStateChanged(auth, callback)
 
-
+export const getCurrentUser = () => {
+    return new Promise(
+        (resolve, reject) => {
+            const unsubcribe = onAuthStateChanged(
+                auth,
+                (userAuth) => {
+                    unsubcribe();
+                    resolve(userAuth);
+                },
+                reject
+            );
+        }
+    );
+}
 
