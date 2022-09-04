@@ -1,6 +1,5 @@
 import React from 'react'
-import './button.styles.scss'
-
+import { SpinnerContainer } from '../spinner/spinner.styles';
 const BUTTON_TYPE_CLASSES = {
     base: 'base',
     google: 'google-sign-in',
@@ -16,13 +15,15 @@ const BUTTON_TYPE_CLASSES = {
 // const buttonType = BUTTON_TYPE_CLASSES.base;
 // console.log(getButton(buttonType));
 
-const Button = ({ children, buttonType, ...otherProps }) => {
+const Button = ({ children, buttonType, isLoading, ...otherProps }) => {
+
     return (
         <button
             {...otherProps}
-            className={`button-container ${BUTTON_TYPE_CLASSES[buttonType]}`}
+            className={`button-container ${BUTTON_TYPE_CLASSES[buttonType]} `}
+            disabled={isLoading}
         >
-            {children}
+            {isLoading ? <SpinnerContainer /> : children}
         </button>
     )
 }

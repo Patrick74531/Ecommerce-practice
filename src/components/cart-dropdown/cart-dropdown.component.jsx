@@ -16,7 +16,9 @@ const CartDropdown = () => {
         navigate('/checkout');
     };
     return (
-        <div className='cart-dropdown-container'>
+        <div className='cart-dropdown-container'
+            onClick={(ev) => ev.stopPropagation()}
+        >
             <div className='cart-items'>
                 {cartItems.map((cartItem) =>
                     <CartItem

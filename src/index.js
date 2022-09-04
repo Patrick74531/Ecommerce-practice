@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.scss';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Elements } from '@stripe/react-stripe-js';
 import { Provider } from 'react-redux';
+import App from './App';
 import { store, persistor } from './store/store';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
+import { stripePromise } from './utils/stripe/stripe.utils';
+import './index.scss';
 // import { UserProvider } from './contexts/user.context';
 // import { ProductProvider } from './contexts/products.context';
 // import { CartProvider } from './contexts/cart.context';
@@ -21,7 +23,9 @@ root.render(
         {/* <UserProvider> */}
         {/* <ProductProvider> */}
         {/* <CartProvider> */}
-        <App />
+        <Elements stripe={stripePromise}>
+          <App />
+        </Elements>
         {/* </CartProvider> */}
         {/* </ProductProvider> */}
       </BrowserRouter>

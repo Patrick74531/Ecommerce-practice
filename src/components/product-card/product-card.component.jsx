@@ -16,7 +16,9 @@ const ProductCard = ({ product }) => {
 
 
     return (
-        <div className='product-card'>
+        <div className='product-card'
+            onClick={(ev) => ev.stopPropagation()}
+        >
             <img src={imageUrl} alt={name} />
             <Button
                 buttonType='inverted'
