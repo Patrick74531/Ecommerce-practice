@@ -6,19 +6,11 @@ import Shop from './routes/shop/shop.component';
 import Navigation from './routes/navigation/navigation.component';
 import Auth from './routes/auth/auth.component';
 import Checkout from './routes/checkout/checkout.component';
-import { onAuthStateChangedLisener, createUserDocumentFromAuth, getCurrentUser } from './utils/firebase/firebase.utils'
-import { checkUserSession, setCurrentUser } from './store/user/user.action'
+import { checkUserSession } from './store/user/user.action'
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(checkUserSession());
-    // const unsubcribe = onAuthStateChangedLisener((user) => {
-    //   if (user) {
-    //     createUserDocumentFromAuth(user);
-    //   }
-    //   dispatch(setCurrentUser(user));
-    // });
-    // return unsubcribe;
   }, [])
 
   return (

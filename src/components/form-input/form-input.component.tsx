@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes, FC } from 'react'
+import { InputHTMLAttributes, FC } from 'react'
 import './form-input.styles.scss'
 
 type FormInputProps = {

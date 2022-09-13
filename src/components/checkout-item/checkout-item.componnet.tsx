@@ -1,8 +1,7 @@
-import React, { useContext, FC } from 'react'
+import { FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux/es/exports';
 import { selectCartItems } from '../../store/cart/cart.selector';
 import { decrementItemFromCart, addItemToCart, deleteItemfromCart } from '../../store/cart/cart.action';
-// import { CartContext } from '../../contexts/cart.context'
 import './checkout-item.styles.scss'
 import { CartItem } from '../../store/cart/cart.types';
 
@@ -13,7 +12,6 @@ const CheckoutItem: FC<CheckOutItemProps> = ({ cartItem }) => {
     const dispatch = useDispatch();
     const cartItems = useSelector(selectCartItems);
     const { imageUrl, name, price, quantity } = cartItem;
-    // const { decrementItemFromCart, addItemToCart, deleteItemfromCart } = useContext(CartContext);
 
     return (
         <div className='checkout-item-container'>

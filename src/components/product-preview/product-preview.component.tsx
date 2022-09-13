@@ -1,16 +1,14 @@
-import React from 'react'
 import { useSelector } from 'react-redux/es/hooks/useSelector'
 import { Link } from 'react-router-dom'
 import { selectCurrentProduct, selectProductsIsLoading } from '../../store/products/product.selector'
 import ProductCard from '../product-card/product-card.component'
 import Spinner from '../spinner/spinner.component'
-// import { ProductContext } from '../../contexts/products.context'
 
 import './product-preview.styles.scss'
 const ProductPreview = () => {
     const products = useSelector(selectCurrentProduct);
     const isLoading = useSelector(selectProductsIsLoading);
-    // const { products } = useContext(ProductContext)
+
     return (
         <div className='category-preview-container'>
             {isLoading ? <Spinner /> :

@@ -1,5 +1,5 @@
 import { AnyAction } from "redux";
-import { PRODUCTS_ACTION_TYPES, Product } from "./product.types";
+import { Product } from "./product.types";
 import { fetchProductsFailed, fetchProductsStart, fetchProductsSuccess } from "./product.action";
 
 export type ProductState = {

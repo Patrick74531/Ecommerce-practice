@@ -1,6 +1,5 @@
-import React, { useState, FormEvent, ChangeEvent } from 'react'
+import { useState, FormEvent, ChangeEvent } from 'react'
 import { useDispatch } from 'react-redux/es/exports';
-import { signInWithGooglePopup, SignInAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils';
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
 import { emailSignInStart, googleSignInStart } from '../../store/user/user.action';
@@ -27,7 +26,6 @@ const SignIn = () => {
     const handelSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try {
-            // const response = await SignInAuthUserWithEmailAndPassword(email, password);
             dispatch(emailSignInStart(email, password));
             resetFormField();
         } catch (error) {
@@ -40,9 +38,7 @@ const SignIn = () => {
     };
 
     const logGoogleUser = () => {
-        // await signInWithGooglePopup();
         dispatch(googleSignInStart())
-
     }
     return (
         <div className='sign-in-container'>

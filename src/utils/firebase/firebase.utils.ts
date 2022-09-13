@@ -24,11 +24,7 @@ import {
     QueryDocumentSnapshot
 } from 'firebase/firestore';
 import { Product } from "../../store/products/product.types";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: "AIzaSyBZGRxew_TVCY8RdX0DdDyDdaRJp8q1a78",
     authDomain: "crwn-ecommerce-db-721e4.firebaseapp.com",
@@ -39,7 +35,6 @@ const firebaseConfig = {
     measurementId: "G-EJ63P03P54"
 };
 
-// Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({

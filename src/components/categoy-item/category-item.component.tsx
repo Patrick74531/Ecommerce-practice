@@ -1,4 +1,4 @@
-import React, { useEffect, useState, FC } from 'react';
+import { useEffect, useState, FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './category-item.styles.scss';
 import { DirectoryCategory } from '../directory/directory.component';

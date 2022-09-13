@@ -18,8 +18,6 @@ export type ProductAction =
     FetchProductsStart
     | FetchProductsSuccess
     | FetchProductsFailed;
-// export const setProduct = (product) =>
-//     createAction(PRODUCTS_ACTION_TYPES.ADD_PRODUCTS, product);
 
 export const fetchProductsStart = withMatcher((): FetchProductsStart =>
     createAction(PRODUCTS_ACTION_TYPES.SET_PRODUCTS_START));
