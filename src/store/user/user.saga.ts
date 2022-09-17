@@ -50,12 +50,35 @@ export function* isUserAuthenticated() {
     }
 }
 
-export function* signUp({ payload: { email, password, displayName } }: SignUpStart) {
+export function* signUp({ payload: {
+    email,
+    password,
+    displayName,
+    firstName,
+    lastName,
+    phoneNumber,
+    countyRegion,
+    address,
+    suburb,
+    state,
+    postcode,
+} }: SignUpStart) {
     try {
         const userCredential = yield* call(createAuthUserWithEmailAndPassword, email, password);
         if (userCredential) {
             const { user } = userCredential;
-            yield* put(signUpSuccess(user, { displayName }));
+            yield* put(signUpSuccess(user,
+                {
+                    displayName,
+                    firstName,
+                    lastName,
+                    phoneNumber,
+                    countyRegion,
+                    address,
+                    suburb,
+                    state,
+                    postcode,
+                }));
         }
     } catch (error) {
         yield* put(signInFailed(error as Error));
@@ -75,6 +98,7 @@ export function* signOut() {
         yield* put(signOutFailed(error as Error));
     }
 }
+
 
 export function* onCheckUserSession() {
     yield* takeLatest(USER_ACTION_TYPES.CHECK_USER_SESSION, isUserAuthenticated);
@@ -97,6 +121,7 @@ export function* onSignUpSuccess() {
 export function* onSignOutStart() {
     yield* takeLatest(USER_ACTION_TYPES.SIGN_OUT_START, signOut);
 }
+
 export function* userSagas() {
     yield* all([
         call(onCheckUserSession),
@@ -104,6 +129,7 @@ export function* userSagas() {
         call(onEmailSignInStart),
         call(onSignUpStart),
         call(onSignUpSuccess),
-        call(onSignOutStart)
+        call(onSignOutStart),
+
     ]);
 }

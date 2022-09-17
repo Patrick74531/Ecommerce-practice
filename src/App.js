@@ -7,6 +7,7 @@ import Navigation from './routes/navigation/navigation.component';
 import Auth from './routes/auth/auth.component';
 import Checkout from './routes/checkout/checkout.component';
 import { checkUserSession } from './store/user/user.action'
+import UserAccount from './components/user-account/user-account.component';
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -20,6 +21,7 @@ function App() {
         <Route path='shop/*' element={<Shop />} />
         <Route path='auth' element={<Auth />} />
         <Route path='checkout' element={<Checkout />} />
+        <Route path='user-account' element={<UserAccount />} />
       </Route>
     </Routes>
   )

@@ -1,19 +1,27 @@
 import { useState, FormEvent, ChangeEvent } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux/es/exports';
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
 import { emailSignInStart, googleSignInStart } from '../../store/user/user.action';
-import './sign-in.styles.scss'
 import { AuthError, AuthErrorCodes } from 'firebase/auth';
+import { onAuthStateChangedLisener } from '../../utils/firebase/firebase.utils';
+import './sign-in.styles.scss'
+
 const defaultFormField = {
     email: '',
     password: '',
 };
 const SignIn = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const [formField, setFormField] = useState(defaultFormField);
     const { email, password } = formField;
 
+    const onAuthLisener = () => onAuthStateChangedLisener((user) => {
+        if (user)
+            navigate('/shop')
+    })
     const resetFormField = () => {
         setFormField(defaultFormField);
     }
@@ -28,6 +36,7 @@ const SignIn = () => {
         try {
             dispatch(emailSignInStart(email, password));
             resetFormField();
+            onAuthLisener();
         } catch (error) {
             if ((error as AuthError).code === AuthErrorCodes.INVALID_PASSWORD || AuthErrorCodes.INVALID_EMAIL) {
                 alert('incorrect password or email')
@@ -38,8 +47,9 @@ const SignIn = () => {
     };
 
     const logGoogleUser = () => {
-        dispatch(googleSignInStart())
-    }
+        dispatch(googleSignInStart());
+        onAuthLisener();
+    };
     return (
         <div className='sign-in-container'>
             <h2> have an account?</h2>

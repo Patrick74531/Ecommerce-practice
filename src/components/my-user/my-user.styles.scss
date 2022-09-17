@@ -1,0 +1,19 @@
+.my-user-container {
+    padding: 5px 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 1px solid;
+    border-radius: 25px;
+    margin-left: 12px;
+
+    &:hover {
+        background-color: rgba($color: #000000, $alpha: 0.1);
+    }
+
+    .avatar {
+        margin-right: 10px;
+        border-radius: 50%;
+        width: 30px;
+    }
+}

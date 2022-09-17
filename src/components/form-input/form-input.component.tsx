@@ -12,9 +12,7 @@ const FormInput: FC<FormInputProps> = ({ label, ...otherProps }) => {
             {label && (
                 <label
                     className={`
-                        ${Boolean(otherProps.value &&
-                        typeof otherProps.value === 'string' &&
-                        otherProps.value.length ? 'shrink' : '')} 
+                        ${otherProps.value ? 'shrink' : ''} 
                         form-input-label
                         `}
                 >

@@ -71,14 +71,30 @@ export const getCategoriesAndDocuments = async (): Promise<Product[]> => {
 }
 
 export type AdditionalInfo = {
-    displayName?: string
+    displayName?: string;
+    firstName?: string;
+    lastName?: string;
+    phoneNumber?: string;
+    countyRegion?: string;
+    address?: string;
+    suburb?: string;
+    state?: string;
+    postcode?: string;
 }
 
 export type UserData = {
     displayName: string;
     creatDate: Date;
-    email: string
-
+    email: string;
+    photoURL: string;
+    firstName?: string;
+    lastName?: string;
+    phoneNumber?: string;
+    countyRegion?: string;
+    address?: string;
+    suburb?: string;
+    state?: string;
+    postcode?: string;
 }
 
 export const createUserDocumentFromAuth = async (
@@ -90,13 +106,14 @@ export const createUserDocumentFromAuth = async (
     const userSnapshot = await getDoc(userDocRef);
 
     if (!userSnapshot.exists()) {
-        const { displayName, email } = userAuth;
+        const { displayName, email, photoURL } = userAuth;
         const creatDate = new Date();
         try {
             await setDoc(userDocRef, {
                 displayName,
                 email,
                 creatDate,
+                photoURL,
                 ...additionalInfo
             });
         } catch (error) {
@@ -106,6 +123,8 @@ export const createUserDocumentFromAuth = async (
     // return userDocRef;
     return userSnapshot as QueryDocumentSnapshot<UserData>;
 }
+
+
 export const createAuthUserWithEmailAndPassword = async (email: string, password: string) => {
     if (!email || !password) return;
     return await createUserWithEmailAndPassword(auth, email, password);

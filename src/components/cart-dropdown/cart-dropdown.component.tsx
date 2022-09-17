@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux/es/exports';
 import { selectCartItems } from '../../store/cart/cart.selector';
 import Button from '../button/button.component'
 import CartItem from '../cart-item/cart-item.component'
-
+import Dropdown from '../dropdown/dropdown.component';
 import './cart-dropdown.styles.scss'
 
 const CartDropdown = () => {
@@ -14,9 +14,7 @@ const CartDropdown = () => {
         navigate('/checkout');
     };
     return (
-        <div className='cart-dropdown-container'
-            onClick={(ev) => ev.stopPropagation()}
-        >
+        <Dropdown>
             <div className='cart-items'>
                 {cartItems.map((cartItem) =>
                     <CartItem
@@ -27,7 +25,7 @@ const CartDropdown = () => {
 
             </div>
             <Button onClick={handleNavigate}>GO TO CHECKOUT</Button>
-        </div>
+        </Dropdown>
     )
 }
 

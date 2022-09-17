@@ -1,0 +1,39 @@
+.user-account {
+    display: flex;
+    width: 900px;
+    justify-content: space-between;
+    margin: 30px auto;
+
+    .customer-overview {
+        display: flex;
+        flex-direction: column;
+        width: 380px;
+
+        h2 {
+            margin: 10px 0;
+        }
+
+
+    }
+
+    .customer-address {
+        display: flex;
+        flex-direction: column;
+        width: 380px;
+
+        h2 {
+            margin: 10px 0;
+        }
+    }
+}
+
+.customer-wrap {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    padding: 20px;
+
+    .customer-label {
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+}

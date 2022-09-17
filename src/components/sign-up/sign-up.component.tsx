@@ -8,12 +8,35 @@ const defaultFormField = {
     displayName: '',
     email: '',
     password: '',
-    confrimPassword: ''
+    confrimPassword: '',
+    firstName: '',
+    lastName: '',
+    phoneNumber: '',
+    countyRegion: '',
+    address: '',
+    suburb: '',
+    state: '',
+    postcode: '',
+
 };
 const SignUp = () => {
     const dispatch = useDispatch();
     const [formField, setFormField] = useState(defaultFormField);
-    const { displayName, email, password, confrimPassword } = formField;
+    const
+        {
+            displayName,
+            email,
+            password,
+            confrimPassword,
+            firstName,
+            lastName,
+            phoneNumber,
+            countyRegion,
+            address,
+            suburb,
+            state,
+            postcode,
+        } = formField;
 
 
     const resetFormField = () => {
@@ -33,7 +56,19 @@ const SignUp = () => {
         }
 
         try {
-            dispatch(signUpStart(email, password, displayName));
+            dispatch(signUpStart(
+                email,
+                password,
+                displayName,
+                firstName,
+                lastName,
+                phoneNumber,
+                countyRegion,
+                address,
+                suburb,
+                state,
+                postcode,
+            ));
         } catch (error) {
             console.log('error', error);
         };
@@ -71,6 +106,64 @@ const SignUp = () => {
                     required type='password'
                     name='confrimPassword'
                     value={confrimPassword}
+                    onChange={handleChange}
+                />
+
+                <FormInput
+                    label='First Name'
+                    required type='text'
+                    name='firstName'
+                    value={firstName}
+                    onChange={handleChange}
+                />
+                <FormInput
+                    label='Last Name'
+                    required type='text'
+                    name='lastName'
+                    value={lastName}
+                    onChange={handleChange}
+                />
+
+                <FormInput
+                    label='Phone Number'
+                    required type='text'
+                    name='phoneNumber'
+                    value={phoneNumber}
+                    onChange={handleChange}
+                />
+                <FormInput
+                    label='Country/Region'
+                    required type='text'
+                    name='countyRegion'
+                    value={countyRegion}
+                    onChange={handleChange}
+                />
+                <FormInput
+                    label='Address'
+                    required type='text'
+                    name='address'
+                    value={address}
+                    onChange={handleChange}
+                />
+                <FormInput
+                    label='Suburb'
+                    required type='text'
+                    name='suburb'
+                    value={suburb}
+                    onChange={handleChange}
+                />
+                <FormInput
+                    label='State/Territory'
+                    required type='text'
+                    name='state'
+                    value={state}
+                    onChange={handleChange}
+                />
+                <FormInput
+                    label='Postcode'
+                    required type='text'
+                    name='postcode'
+                    value={postcode}
                     onChange={handleChange}
                 />
                 <Button type='submit'>Sign Up</Button>

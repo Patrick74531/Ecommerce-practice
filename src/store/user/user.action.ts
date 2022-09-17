@@ -9,6 +9,17 @@ export type EmailAndPassword = {
 }
 export type DisplayNameAndEmlPsd = EmailAndPassword & {
     displayName: string;
+    email: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+    phoneNumber: string;
+    countyRegion: string;
+    address: string;
+    suburb: string;
+    state: string;
+    postcode: string;
+
 }
 
 export type SetCurrentUser = ActionWithPayload<
@@ -58,6 +69,10 @@ export type SignOutFailed = ActionWithPayload<
     USER_ACTION_TYPES.SIGN_OUT_FAILED,
     Error>;
 
+export type HandleUserOpen = ActionWithPayload<USER_ACTION_TYPES.SET_IS_USER_OPEN, boolean>
+
+
+
 export const setCurrentUser = withMatcher(
     (user: UserData): SetCurrentUser =>
         createAction(USER_ACTION_TYPES.SET_CURRENT_USER,
@@ -92,9 +107,33 @@ export const signInFailed = withMatcher(
             error));
 
 export const signUpStart = withMatcher(
-    (email: string, password: string, displayName: string): SignUpStart =>
+    (
+        email: string,
+        password: string,
+        displayName: string,
+        firstName: string,
+        lastName: string,
+        phoneNumber: string,
+        countyRegion: string,
+        address: string,
+        suburb: string,
+        state: string,
+        postcode: string,
+    ): SignUpStart =>
         createAction(USER_ACTION_TYPES.SIGN_UP_START,
-            { email, password, displayName }));
+            {
+                email,
+                password,
+                displayName,
+                firstName,
+                lastName,
+                phoneNumber,
+                countyRegion,
+                address,
+                suburb,
+                state,
+                postcode,
+            }));
 
 export const signUpSuccess = withMatcher(
     (user: User, additionalDetails: AdditionalInfo): SignUpSuccess =>
@@ -118,3 +157,6 @@ export const signOutFailed = withMatcher(
     (error: Error): SignOutFailed =>
         createAction(USER_ACTION_TYPES.SIGN_OUT_FAILED,
             error));
+export const handleUserOpen = withMatcher(
+    (bool: boolean): HandleUserOpen =>
+        createAction(USER_ACTION_TYPES.SET_IS_USER_OPEN, bool));

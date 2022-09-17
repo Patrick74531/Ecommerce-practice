@@ -1,0 +1,17 @@
+.user-dropdown {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+
+    .user-items-wrap {
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+    }
+
+    .user-item {
+        padding-left: 5px;
+        width: 100%;
+    }
+}

@@ -3,9 +3,11 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import { useSelector } from 'react-redux/es/hooks/useSelector'
 import { selectCurrentUser } from '../../store/user/user.selector'
 import { selectCartTotal } from '../../store/cart/cart.selector'
-import Button from '../button/button.component'
-import './payment-form.styles.scss'
 import { StripeCardElement } from '@stripe/stripe-js'
+import Button from '../button/button.component'
+import UserAccount from '../user-account/user-account.component'
+import './payment-form.styles.scss'
+
 
 const ifValidCardElement = (card: StripeCardElement | null): card is StripeCardElement => card !== null;
 
@@ -59,7 +61,8 @@ const PaymentForm = () => {
         <div className='payment-container'>
             <form className='form-container' onSubmit={paymentHandler}>
                 <h2 >Credit Card Payment:</h2>
-                <CardElement />
+                <CardElement className='card-element' />
+                <UserAccount />
                 <Button isLoading={isProcessingPayment}>PAY NOW</Button>
             </form>
 
