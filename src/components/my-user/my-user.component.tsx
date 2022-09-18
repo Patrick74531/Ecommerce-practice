@@ -34,7 +34,8 @@ const MyUser = () => {
             className="my-user-container"
             onClick={openUserCenter}
         >
-            <img className="avatar" src={currentUser?.photoURL ? currentUser?.photoURL : 'https://lh3.googleusercontent.com/ogw/AOh-ky2PyDDnli5JPkwzZjDUTrfS30SgGfIyrS8tPD-a=s32-c-mo'} alt="" />
+
+            <img className="avatar" src={currentUser?.photoURL ? currentUser?.photoURL : '/logo192.png'} alt="" />
             <span>{currentUser?.displayName}</span>
         </div>
     )

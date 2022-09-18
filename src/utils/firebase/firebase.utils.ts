@@ -17,6 +17,7 @@ import {
     doc,
     getDoc,
     setDoc,
+    updateDoc,
     collection,
     writeBatch,
     query,
@@ -24,6 +25,8 @@ import {
     QueryDocumentSnapshot
 } from 'firebase/firestore';
 import { Product } from "../../store/products/product.types";
+import { CartItem } from "../../store/cart/cart.types";
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyBZGRxew_TVCY8RdX0DdDyDdaRJp8q1a78",
@@ -42,6 +45,7 @@ provider.setCustomParameters({
 })
 
 export const auth = getAuth();
+console.log(auth);
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 export const signInWithGoogleRedirect = () => signInWithRedirect(auth, provider);
 export const db = getFirestore();
@@ -70,6 +74,7 @@ export const getCategoriesAndDocuments = async (): Promise<Product[]> => {
 
 }
 
+
 export type AdditionalInfo = {
     displayName?: string;
     firstName?: string;
@@ -80,13 +85,14 @@ export type AdditionalInfo = {
     suburb?: string;
     state?: string;
     postcode?: string;
+    cartItems?: CartItem[];
 }
 
 export type UserData = {
-    displayName: string;
-    creatDate: Date;
-    email: string;
-    photoURL: string;
+    displayName?: string;
+    creatDate?: Date;
+    email?: string;
+    photoURL?: string;
     firstName?: string;
     lastName?: string;
     phoneNumber?: string;
@@ -95,7 +101,11 @@ export type UserData = {
     suburb?: string;
     state?: string;
     postcode?: string;
+    cartItems?: CartItem[];
 }
+
+
+
 
 export const createUserDocumentFromAuth = async (
     userAuth: User,
@@ -106,7 +116,12 @@ export const createUserDocumentFromAuth = async (
     const userSnapshot = await getDoc(userDocRef);
 
     if (!userSnapshot.exists()) {
-        const { displayName, email, photoURL } = userAuth;
+        const {
+            displayName,
+            email,
+            photoURL,
+
+        } = userAuth;
         const creatDate = new Date();
         try {
             await setDoc(userDocRef, {
@@ -124,6 +139,25 @@ export const createUserDocumentFromAuth = async (
     return userSnapshot as QueryDocumentSnapshot<UserData>;
 }
 
+export const updateUserDocumentFromAuth = async (
+    userAuth: User,
+    additionalInfo = {} as AdditionalInfo
+): Promise<void | QueryDocumentSnapshot<UserData>> => {
+    if (!userAuth) return;
+    const userDocRef = doc(db, 'user', userAuth.uid);
+    const userSnapshot = await getDoc(userDocRef);
+
+    if (userSnapshot.exists()) {
+        try {
+            await updateDoc(userDocRef, {
+                ...additionalInfo
+            });
+        } catch (error) {
+            console.log('error', error);
+        }
+    }
+    return userSnapshot as QueryDocumentSnapshot<UserData>;
+}
 
 export const createAuthUserWithEmailAndPassword = async (email: string, password: string) => {
     if (!email || !password) return;

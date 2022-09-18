@@ -1,0 +1,26 @@
+.update-info-container {
+    display: flex;
+    flex-direction: column;
+
+
+    .form-wrap {
+        display: flex;
+        justify-content: center;
+
+
+        form {
+            margin: 0 50px;
+            width: 30%;
+
+            button {
+                width: 100%;
+            }
+        }
+    }
+
+    h2 {
+        margin: 50px 0;
+    }
+
+
+}

@@ -25,7 +25,13 @@ const UserDropdown = () => {
                 </div>
                 <div className="user-items-wrap">
                     <ListAltIcon />
-                    <span className="user-item">My Orders</span>
+                    <Link
+                        className="user-item"
+                        to='user-orders'
+                    >
+                        My Orders
+                    </Link>
+
                 </div>
                 <div className="user-items-wrap">
                     <AssignmentReturnIcon />

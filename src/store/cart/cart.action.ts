@@ -1,6 +1,8 @@
 import { CART_ACTION_TYPES, CartItem } from "./cart.types";
 import { ProductItem } from "../products/product.types";
 import { createAction, withMatcher, ActionWithPayload } from "../../utils/reducer/reducer.utils";
+import { auth, updateUserDocumentFromAuth } from "../../utils/firebase/firebase.utils";
+
 
 const addCartItem = (cartItems: CartItem[], productToAdd: ProductItem): CartItem[] => {
     const existCartItem = cartItems.find(
@@ -51,15 +53,21 @@ export const setCartItem = withMatcher(
     (cartItem: CartItem[]): SetCartOpen =>
         createAction(CART_ACTION_TYPES.SET_CART_ITEMS, cartItem));
 
+
 export const addItemToCart = (
     cartItems: CartItem[], product: ProductItem): SetCartOpen => {
     const cartNewItems = addCartItem(cartItems, product);
+    if (auth.currentUser)
+        updateUserDocumentFromAuth(auth.currentUser, { ['cartItems']: cartNewItems });
+
     return setCartItem(cartNewItems);
 };
 
 export const decrementItemFromCart = (
     cartItems: CartItem[], product: ProductItem): SetCartOpen => {
     const cartNewItems = decrementItem(cartItems, product);
+    if (auth.currentUser)
+        updateUserDocumentFromAuth(auth.currentUser, { ['cartItems']: cartNewItems });
     return setCartItem(cartNewItems);
 };
 
@@ -67,5 +75,7 @@ export const decrementItemFromCart = (
 export const deleteItemfromCart = (
     cartItems: CartItem[], product: CartItem): SetCartOpen => {
     const cartNewItems = deleteItem(cartItems, product);
+    if (auth.currentUser)
+        updateUserDocumentFromAuth(auth.currentUser, { ['cartItems']: cartNewItems });
     return setCartItem(cartNewItems);
 };

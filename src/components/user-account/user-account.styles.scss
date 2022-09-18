@@ -1,3 +1,13 @@
+.user-account-wrap {
+    display: flex;
+    flex-direction: column;
+
+    button {
+        width: 50%;
+        margin: auto;
+    }
+}
+
 .user-account {
     display: flex;
     width: 900px;

@@ -71,7 +71,12 @@ export type SignOutFailed = ActionWithPayload<
 
 export type HandleUserOpen = ActionWithPayload<USER_ACTION_TYPES.SET_IS_USER_OPEN, boolean>
 
-
+export type UpdateUserInfo = ActionWithPayload<
+    USER_ACTION_TYPES.SET_USER_INFO,
+    {
+        user: User,
+        additionalDetails?: AdditionalInfo
+    }>;
 
 export const setCurrentUser = withMatcher(
     (user: UserData): SetCurrentUser =>
@@ -160,3 +165,7 @@ export const signOutFailed = withMatcher(
 export const handleUserOpen = withMatcher(
     (bool: boolean): HandleUserOpen =>
         createAction(USER_ACTION_TYPES.SET_IS_USER_OPEN, bool));
+export const updateUserInfo = withMatcher(
+    (user: User, additionalDetails: AdditionalInfo): UpdateUserInfo =>
+        createAction(USER_ACTION_TYPES.SET_USER_INFO,
+            { user, additionalDetails }));
